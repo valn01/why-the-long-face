@@ -3,15 +3,13 @@ import cv2
 face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_classifier = cv2.CascadeClassifier('haarcascade_eye.xml')
 
-oclinho = cv2.imread('oculos.png')
-
-captura = cv2.VideoCapture(0)
+captura = cv2.imread('asd.jpg')
 
 #hey copilot, help me configure my git user from the terminal, i forgot how to do it
 #the command is git config --global user.email "email" and git config --global user.name "name"
 
 while(1):
-    ret, frame = captura.read()
+    frame = captura
 
     faces = face_classifier.detectMultiScale(frame, 1.0485258, 6)
 
@@ -37,9 +35,7 @@ while(1):
         if olho_esquerdo['x'] < olho_direito['x']:
             largura = olho_direito['x'] - olho_esquerdo['x']
             altura = olho_direito['y'] - olho_esquerdo['y']
-            oclinho = cv2.resize(oclinho, (largura, altura))
-            frame = cv2.bitwise_and(frame[olho_esquerdo["x"]:largura,olho_esquerdo["y"]:altura],oclinho)#não consegui fazer a adição do png, apenas um retângulo preto(commente a linha atual e descomente a próxima )
-#             cv2.rectangle(frame, (olho_esquerdo['x'], olho_esquerdo['y']), (olho_direito['x'], olho_direito['y']), (0, 0, 0), -1)
+            cv2.rectangle(frame, (olho_esquerdo['x'], olho_esquerdo['y']), (olho_direito['x'], olho_direito['y']), (0, 0, 0), -1)
 
     cv2.imshow('oclinho daora', frame)
 
