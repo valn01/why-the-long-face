@@ -18,7 +18,7 @@ while(1):
         cv2.rectangle(frame, (x, y), (x + w, y + h), (127, 0, 255), 2)        
 
         cv2.putText(frame, str(len(faces)) + ' faces detectadas', (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-    if frame.shape[0] > 0 and frame.shape[1] > 0:
+    if frame is not None and frame.shape[0] > 0 and frame.shape[1] > 0:
         cv2.imshow('faces', frame)
 
     k = cv2.waitKey(30) & 0xff
